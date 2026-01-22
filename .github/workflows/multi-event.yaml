@@ -1,0 +1,24 @@
+name: Multi Event Action
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Priting Basic information"
+        run: | 
+          env | while IFS='=' read -r name value; do
+            if [[ "$name" == GITHUB_* ]]; then
+              printf "Variable: '%s' = '%s'\n" "$name" "$value"
+            fi
+          done
+          
+
+
+
+
+
