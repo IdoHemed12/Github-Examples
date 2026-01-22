@@ -1,33 +1,32 @@
+name: Sleep Workflow
+
 on:
   workflow_dispatch:
-  # Inputs from the pipline triger, can be set up to 10
     inputs:
       seconds:
+        description: "How much time do you want to sleep (seconds)?"
+        required: true
+        default: "1"
         type: string
-        description: 'How match time do you want to sleep'
-        default : 5
-        required: false
       displaytime:
-        description: 'Display the output of the time command ?'
+        description: "Display the output of the time command?"
         required: false
-        type: boolean
         default: false
+        type: boolean
+
 jobs:
-    sleep:
-      runs-on: ubuntu-latest
-      steps:
-        - name: sleep for specified seconds
-          run: |
-                SECONDS="${{ github.event.inputs.seconds }}"
-                DISPLAY="${{ github.event.inputs.displaytime }}"
-                if [[ "${DISPLAY}" == "true" ]]; then
-                  echo "Running: time sleep 1"
-                  time sleep 1
-                else
-                  echo "Running: sleep 1"
-                  sleep 1
-                fi
+  sleep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: sleep
+        run: |
+          SECONDS="${{ github.event.inputs.seconds }}"
+          DISPLAY="${{ github.event.inputs.displaytime }}"
 
-        
-
-    
+          if [[ "$DISPLAY" == "true" ]]; then
+            echo "Running: time sleep $SECONDS"
+            time sleep "$SECONDS"
+          else
+            echo "Running: sleep $SECONDS"
+            sleep "$SECONDS"
+          fi
