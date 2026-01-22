@@ -3,14 +3,14 @@ on:
   # Inputs from the pipline triger, can be set up to 10
     inputs:
       seconds:
+        type: string 
+        default : 5
         description: 'How match time do you want to sleep'
-        required: true
-        type: string
-        default: false
+        required: false
       displaytime:
         description: 'Display the output of the time command ?'
         required: false
-        tpye: boolean
+        type: boolean
         default: false
 jobs:
     sleep:
