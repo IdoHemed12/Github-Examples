@@ -6,12 +6,11 @@ on:
   schedule:
   - cron: "2 * * * * *"
 
-  jobs:
-    hello_world:
-      runs-on: ubuntu-latest
-      steps:
-        - name:
-        run:
-          - | 
-            echo "Hellow World, the time and day are $(date)" 
-        - name: 
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print date command output
+        run: 
+          | echo "Hello World, Current time and date $(date)" 
+
