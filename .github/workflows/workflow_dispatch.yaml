@@ -4,27 +4,38 @@ on:
   workflow_dispatch:
     inputs:
       seconds:
-        description: 'How match seconds to sleep ? '
+        description: "How many seconds to sleep?"
         required: false
         type: string
-        default: 5
+        default: "5"
       showtime:
-        description: 'Show the output of the time command after sleep is done ? '
+        description: "Show the output of the time command after sleep is done?"
         required: true
         type: boolean
+        default: false
 
 jobs:
-  greet:
+  sleep:
     runs-on: ubuntu-latest
     steps:
-      - name: start sleep 
+      - name: start sleep
+        shell: bash
         run: |
-          echo "Setting inputs as bash variables"
-          SECONDSTOSLEEP=${{ inputs.seconds }}
-          SHOWTIME=${{ inputs.showtime }}
-          if [[ $SHOWTIME == 'true'  ]]; then
-            echo "executing: time sleep [second input]"
-            time sleep $SECONDSTOSLEEP
+          set -euo pipefail
+
+          echo "Setting Inputs as bash variables"
+          SECONDSTOSLEEP='${{ inputs.seconds }}'
+          SHOWTIME='${{ inputs.showtime }}'
+
+          # basic validation: seconds must be an integer
+          if ! [[ "$SECONDSTOSLEEP" =~ ^[0-9]+$ ]]; then
+            echo "ERROR: seconds must be a whole number, got: $SECONDSTOSLEEP"
+            exit 1
+          fi
+
+          if [[ "$SHOWTIME" == "true" ]]; then
+            echo "executing: time sleep $SECONDSTOSLEEP"
+            time sleep "$SECONDSTOSLEEP"
           else
-            sleep $SECONDSTOSLEEP
+            sleep "$SECONDSTOSLEEP"
           fi
