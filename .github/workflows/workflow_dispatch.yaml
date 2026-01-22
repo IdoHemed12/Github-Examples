@@ -16,9 +16,9 @@ jobs:
     sleep:
       runs-on: ubuntu-latest
       steps:
-        - name: sleep
+        - name: stype
           run: |
-            if [[ "${{ inputs.displaytime }}" == "true" ]]; then
+            if [[ "${{ github.event.inputs.displaytime }}" == "true" ]]; then
               echo "Running: time sleep 1"
               time sleep 1
             else
