@@ -12,7 +12,7 @@ on:
         required: false
         tpye: boolean
         default: false
-  jobs:
+jobs:
     sleep:
       runs-on: ubuntu-latest
       steps:
