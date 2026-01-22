@@ -1,0 +1,18 @@
+#New WorkFlow 
+#2 * * * *
+name: Custom Schedule Workflow
+
+
+on:
+  schedule:
+    - cron: "2 * * * *"
+  workflow_dispatch:
+  push:
+
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print date command output
+        run: echo "Hello World, Current time and date $(date)" 
+
