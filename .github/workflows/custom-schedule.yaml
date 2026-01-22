@@ -2,9 +2,12 @@
 #2 * * * *
 name: Custom Schedule Workflow
 
-on: 
+
+on:
   schedule:
-  - cron: "2 * * * * "
+    - cron: "2 * * * *"
+  workflow_dispatch:
+  push:
 
 jobs:
   hello_world:
