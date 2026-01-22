@@ -11,9 +11,11 @@ jobs:
     steps:
       - name: "Priting Basic information"
         run: | 
-          while IFS='=' read -r -d name value; do 
-          printf "Variable: '%s' = '%s'\\n" "$name" "$value"
-          done < <(env -0)
+          env | while IFS='=' read -r name value; do
+            if [[ "$name" == GITHUB_* ]]; then
+              printf "Variable: '%s' = '%s'\n" "$name" "$value"
+            fi
+          done
           
 
 
