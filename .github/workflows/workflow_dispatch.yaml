@@ -21,7 +21,7 @@ jobs:
         run: |
           echo "Setting Inputs as bash variables"
           SECONDSTOSLEEP=${{ Inputs.seconds }}
-          SHOWTIME=${{ showtime }}
+          SHOWTIME=${{ Inputs.showtime }}
           if [[ $SHOWTIME == 'true'  ]]; then
             echo "executing: time sleep [second input]"
             time sleep $SECONDSTOSLEEP
