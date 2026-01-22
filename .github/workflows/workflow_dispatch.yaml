@@ -20,8 +20,8 @@ jobs:
     steps:
       - name: sleep
         run: |
-          SECONDS="${{ github.event.inputs.seconds }}"
-          DISPLAY="${{ github.event.inputs.displaytime }}"
+          SECONDS="${{ inputs.seconds }}"
+          DISPLAY="${{ inputs.displaytime }}"
 
           if [[ "$DISPLAY" == "true" ]]; then
             echo "Running: time sleep $SECONDS"
