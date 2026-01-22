@@ -1,14 +1,17 @@
-name: example schedule action
+#New WorkFlow 
+#2 * * * *
+name: Custom Schedule Workflow
 
-on:
+on: 
   schedule:
-    - cron: "10 * * * *"
-jobs:
-  test_schedule:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run scheduled task
-        run: |
-          echo "Custom script starting"
-          echo "This is the date today $(date)"
-          echo "success"
+  - cron: "2 * * * * *"
+
+  jobs:
+    hello_world:
+      runs-on: ubuntu-latest
+      steps:
+        - name:
+        run:
+          - | 
+            echo "Hellow World, the time and day are $(date)" 
+        - name: 
