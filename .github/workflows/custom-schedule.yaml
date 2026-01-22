@@ -11,6 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: print date command output
-        run: 
-          | echo "Hello World, Current time and date $(date)" 
+        run: echo "Hello World, Current time and date $(date)" 
 
