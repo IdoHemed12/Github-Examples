@@ -1,16 +1,21 @@
-// See https://containers.dev/implementors/json_reference/ for configuration reference
 {
-"name": "basic configure",
-"customizations": {
-	"vscode": {
-		"extensions": [
-			"mhutchie.git-graph",
-			"phil294.git-log--graph"
-		]
-	}
-},
-"features": {
-	"ghcr.io/devcontainers/features/github-cli:1": {},
-	"ghcr.io/devcontainers/features/terraform:1": {}
+  "name": "My Workspace",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {},
+  "postCreateCommand": "bash -lc '\
+    sudo apt update && \
+    sudo apt install -y curl git unzip ripgrep fd-find build-essential && \
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage && \
+    chmod +x nvim.appimage && \
+    sudo mv nvim.appimage /usr/local/bin/nvim && \
+    git clone https://github.com/LazyVim/starter ~/.config/nvim && \
+    rm -rf ~/.config/nvim/.git && \
+    mkdir -p ~/.config/nvim/lua/plugins && \
+    printf \"return { { \\\"folke/tokyonight.nvim\\\", lazy = false, priority = 1000, opts = { style = 'night' } } }\" > ~/.config/nvim/lua/plugins/colorscheme.lua \
+  '",
+  "customizations": {
+    "vscode": {
+      "extensions": []
+    }
   }
 }
