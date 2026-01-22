@@ -2,22 +2,13 @@ name: example schedule action
 
 on:
   schedule:
-   - cron: "10 * * * *"
+    - cron: "10 * * * *"
 jobs:
   test_schedule:
     runs-on: ubuntu-latest
     steps:
-      - name: cron mismatch
-        if: github.event.schedule != '10 * * * *'
-        run: echo "cron execution mismatch"
-
-      - name: cron match
-        if: github.event.schedule == '10 * * * *'
+      - name: Run scheduled task
         run: |
           echo "Custom script starting"
           echo "This is the date today $(date)"
-          if [ $? -ne 0 ]; then
-            echo "failed"
-          else
-            echo "success"
-          fi
+          echo "success"
