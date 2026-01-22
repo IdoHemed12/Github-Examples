@@ -1,0 +1,5 @@
+name: example schedule action
+on:
+  schedule:
+   - cron 10 * * * * 
+jobs: 
