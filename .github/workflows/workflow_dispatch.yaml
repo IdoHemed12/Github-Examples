@@ -1,0 +1,31 @@
+on:
+  workflow_dispatch:
+  # Inputs from the pipline triger, can be set up to 10
+    inputs:
+      seconds:
+        description: 'How match time do you want to sleep'
+        required: true
+        type: string
+        default: false
+      displaytime:
+        description: 'Display the output of the time command ?'
+        required: false
+        tpye: boolean
+        default: false
+  jobs:
+    sleep:
+      runs-on: ubuntu-latest
+      steps:
+        - name: sleep
+          run: |
+            if [[ "${{ inputs.displaytime }}" == "true" ]]; then
+              echo "Running: time sleep 1"
+              time sleep 1
+            else
+              echo "Running: sleep 1"
+              sleep 1
+            fi
+
+        
+
+    
