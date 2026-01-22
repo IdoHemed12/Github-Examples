@@ -1,6 +1,12 @@
+name: Multi Event Action
 on:
-  push: [main, dev]
-  pull_request: [main]
+  push:
+    branch:
+      - main 
+      - dev
+  pull_request:
+    branch:
+      - main
 
 jobs:
   hello_world:
