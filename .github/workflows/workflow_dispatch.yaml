@@ -16,15 +16,17 @@ jobs:
     sleep:
       runs-on: ubuntu-latest
       steps:
-        - name: stype
+        - name: sleep for specified seconds
           run: |
-            if [[ "${{ github.event.inputs.displaytime }}" == "true" ]]; then
-              echo "Running: time sleep 1"
-              time sleep 1
-            else
-              echo "Running: sleep 1"
-              sleep 1
-            fi
+                SECONDS="${{ github.event.inputs.seconds }}"
+                DISPLAY="${{ github.event.inputs.displaytime }}"
+                if [[ "${DISPLAY}" == "true" ]]; then
+                  echo "Running: time sleep 1"
+                  time sleep 1
+                else
+                  echo "Running: sleep 1"
+                  sleep 1
+                fi
 
         
 
